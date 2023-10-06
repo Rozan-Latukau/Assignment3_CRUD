@@ -5,4 +5,5 @@ Aplikasi CRUD sederhana
 3. JavaScript
 # Link Video Penjelasan
 ![alt](Assets/Zan-League.gif)
-
+# Link Hosting
+https://rozan-latukau.github.io/Assignment3_CRUD/
