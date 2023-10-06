@@ -200,28 +200,6 @@ async function putData(event) {
     }
 }
 
-
-// Membuat Get untuk tipe
-function typeData() {
-
-    console.log(tipeData);
-    try {
-        const result = fetch(url, {
-            method: "GET",
-        })
-        const response = result.json();
-        const tipeData = typeList;
-        console.log(tipeData);
-    } catch (error) {
-
-    }
-
-}
-
-
-
-
-
 function addform() {
     const addForm = document.getElementById("addForm")
     if (addForm.style.display === "" || addForm.style.display === "block") {
