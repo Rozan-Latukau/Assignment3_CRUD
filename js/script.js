@@ -173,7 +173,6 @@ async function dataid(id) {
 }
 
 async function putData(event) {
-    event.preventDefault();
     const updateid = document.getElementById("updateId").value;
     const data = {
         name: document.getElementById("name").value,
