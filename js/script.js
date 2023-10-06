@@ -1,8 +1,6 @@
-const typeLiga = document.getElementById("type")
 const movieList = document.getElementById("list-movie");
+const typeLiga = document.getElementById("type")
 const url = 'http://localhost:3000/data';
-const xhr = new XMLHttpRequest();
-
 const typeList = [
     "EPL",
     "La Liga",
@@ -20,93 +18,187 @@ typeList.forEach((element) => {
     typeLiga.appendChild(newOption)
 });
 
-
-function fetchData() {
-    xhr.onerror = function() {
-        alert("there is an error")
-    }
-
-    xhr.onloadstart = function() {
-        movieList.innerHTML = "Start";
-    }
-
-    xhr.onloadend = function() {
-        movieList.innerHTML = "";
-        const data = JSON.parse(this.response);
-        for (let i = 0; i < data.length; i++) {
-            const node = document.createElement("div");
-            node.classList.add("col-md-3");
-            node.classList.add("col-sm-6");
+// Membuat Get All
+fetch(url)
+    .then((res) => res.json())
+    .then((result) => {
+        result.forEach((data) => {
+            const node = document.createElement('div');
+            node.classList.add('col-md-3');
+            node.classList.add('col-sm-6');
             node.innerHTML = `
-                <div class="card mb-3 text-bg-dark">
-                    <img src="${data[i].img}" class="card-img-top" alt="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Club : ${data[i].name}</h5>
-                        <h5 class="card-text">Liga : ${data[i].liga}</h5>
-                        <div class="pt-3 fs-1">
-                        <a href="#" class="btn btn-success" onclick="tampilData(${data[i].id})"><i class="fa-solid fa-eye"></i></a>
-                        <a href="#" class="btn btn-warning" onclick="updateData(${data[i].id})"><i class="fa-solid fa-sync-alt"></i></a>
-                        <a href="#" class="btn btn-danger" onclick="deleteData(${data[i].id})"><i class="fa-solid fa-trash"></i></a>
-                        </div>
-                    </div>
-                </div>   
-            `
+              <div class="card mb-3 text-bg-dark">
+                <img src="${data.img}" class="card-img-top" alt="card">
+                <div class="card-body">
+                  <h5 class="card-title">Club : ${data.name}</h5>
+                  <h5 class="card-text">Liga : ${data.liga}</h5>
+                  <div class="pt-3 fs-1">
+                    <a href="#" class="btn btn-success" onclick="tampilData(${data.id})"><i class="fa-solid fa-eye"></i></a>
+                    <a href="#" class="btn btn-warning" onclick="updateData(${data.id})"><i class="fa-solid fa-sync-alt"></i></a>
+                    <a href="#" class="btn btn-danger" onclick="deleteData(${data.id})"><i class="fa-solid fa-trash"></i></a>
+                  </div>
+                </div>
+              </div>
+            `;
             movieList.appendChild(node);
-        }
+        })
+    })
+
+// Membuat Get ID
+async function tampilData(id) {
+    movieList.innerHTML = "";
+    try {
+        const result = await fetch(`${url}/${id}`, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+        const response = await result.json();
+        console.log(response);
+        const node = document.createElement('div');
+        node.innerHTML = `
+                  <div class="card mb-3 text-bg-dark">
+                    <img src="${response.img}" class="card-img-top size-img" alt="card">
+                    <div class="card-body">
+                      <h4 class="card-title fw-bold">Club : ${response.name}</h4>
+                      <h4 class="card-text fw-medium">Liga : ${response.liga}</h4>
+                      <a href="" class="btn btn-success mt-2" onclick="homeData()">Back</a>
+                    </div>
+                  </div>
+                `;
+        movieList.appendChild(node)
+        console.log(node);
+
+    } catch (error) {
+        console.log(error);
     }
 
-    xhr.onprogress = function() {
-        movieList.innerHTML = "Loading";
+
+}
+
+async function homeData() {
+    try {
+        const result = await fetch(url, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        const response = await result.json();
+        console.log(response);
+        const node = document.createElement('div');
+        node.classList.add('col-md-3');
+        node.classList.add('col-sm-6');
+        node.innerHTML = `
+              <div class="card mb-3 text-bg-dark">
+                <img src="${response.img}" class="card-img-top" alt="card">
+                <div class="card-body">
+                  <h5 class="card-title">Club : ${response.name}</h5>
+                  <h5 class="card-text">Liga : ${response.liga}</h5>
+                  <div class="pt-3 fs-1">
+                    <a href="#" class="btn btn-success" onclick="tampilData(${response.id})"><i class="fa-solid fa-eye"></i></a>
+                    <a href="#" class="btn btn-warning" onclick="updateData(${response.id})"><i class="fa-solid fa-sync-alt"></i></a>
+                    <a href="#" class="btn btn-danger" onclick="deleteData(${response.id})"><i class="fa-solid fa-trash"></i></a>
+                  </div>
+                </div>
+              </div>
+            `;
+
+    } catch (error) {
+        console.error('eror', error);
     }
-
-    xhr.open("GET", url);
-    xhr.send();
 }
 
-
-function tampilData() {
-    movieList.innerHTML = '';
-    let newTampil = document.createElement("div")
-    newTampil.innerHTML = `
-    `
-    xhr.open("GET", url);
-    xhr.send();
-}
-tampilData();
-
-
-
-
-function deleteData(id) {
-    xhr.open("DELETE", url + `/${id}`);
-    xhr.send();
-}
-
-function postData(e) {
+// Membuat POST
+async function postData(e) {
     e.preventDefault();
+
     const data = JSON.stringify({
         name: document.getElementById("name").value,
         img: document.getElementById("img").value,
         liga: document.getElementById("type").value
-    });
-    console.log(data);
+    })
 
-    xhr.open("POST", url);
-    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhr.onload = function() {
-        console.log(this.responseText);
-    };
+    try {
+        const result = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: data
+        });
 
-    xhr.send(data);
-
+        const response = await result.json();
+        console.log("berhasil", response);
+    } catch (data) {
+        alert('ada eror', data);
+    }
 }
 
+// membuat DELETE
+async function deleteData(id) {
 
+    await fetch(`${url}/${id}`, {
+            method: "DELETE",
+        })
+        .then((res) => res.json())
+        .then(() => result())
+        .catch(alert('Ada kesalahan hapus', result()))
+}
 
+// Membuat PUT
+async function updateData(id) {
+    const addForm = document.getElementById("addForm");
+    const dataupdate = await dataid(id);
+    document.getElementById("name").value = dataupdate.name;
+    document.getElementById("img").value = dataupdate.img;
+    document.getElementById("type").value = dataupdate.liga;
 
+    document.getElementById("updateId").value = id;
+    console.log(dataupdate);
+    if (addForm.style.display === ' ' || addForm.style.display === 'none') {
+        addForm.style.display = 'block'
+    } else {
+        addForm.style.display = 'none'
+    }
+}
+async function dataid(id) {
+    try {
+        const result = await fetch(`${url}/${id}`);
+        const data = await result.json();
+        return data;
+    } catch (error) {
+        console.error(error);
+        alert('Terjadi kesalahan saat mengambil data berdasarkan ID');
+    }
+}
 
+async function putData(event) {
+    event.preventDefault();
+    const updateid = document.getElementById("updateId").value;
+    const data = {
+        name: document.getElementById("name").value,
+        img: document.getElementById("img").value,
+        liga: document.getElementById("type").value
+    };
+    try {
+        const result = await fetch(`${url}/${updateid}`, {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
 
+        const response = await result.json();
+        console.log("Berhasil update", response);
 
+    } catch (error) {
+        console.error(error);
+        alert('Terjadi kesalahan saat update data', error);
+    }
+}
 
 function addform() {
     const addForm = document.getElementById("addForm")
@@ -117,21 +209,6 @@ function addform() {
     }
 }
 addform()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function nav(event) {
     let navLinks = document.querySelectorAll(".navbar-nav .nav-item .nav-link");
