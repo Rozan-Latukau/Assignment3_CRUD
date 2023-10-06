@@ -111,7 +111,6 @@ async function homeData() {
 
 // Membuat POST
 async function postData(e) {
-    e.preventDefault();
 
     const data = JSON.stringify({
         name: document.getElementById("name").value,
