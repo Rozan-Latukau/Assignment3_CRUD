@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> Font Awesome
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/6.3.0/css/font-awesome.min.css" />
+    <script src="https://kit.fontawesome.com/1c50e73e27.js" crossorigin="anonymous"></script>
+    <!-- Css Biasa -->
+    <link rel="stylesheet" href="style.css">
+    <title>Zan Movie</title>
+</head>
+
+<body>
+    <!-- Navbar Awal -->
+    <nav class="navbar navbar-expand-lg bg-light bg-gradient">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">Zan Liga</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="collapse navbar-collapse justify-content-end " id="navbarNav" onclick="nav(event)">
+                <ul class="navbar-nav" onclick="navClick(event)">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#" onclick="homeData()">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            League Global
+                        </a>
+                        <ul class="dropdown-menu" onclick="typeData()" id="tipe">
+                            <li><a class="dropdown-item" href="#">La Liga</a></li>
+                            <li><a class="dropdown-item" href="#">EPL</a></li>
+                            <li><a class="dropdown-item" href="#">Seria A</a></li>
+                            <li><a class="dropdown-item" href="#">Ligue 1 Uber Eats</a></li>
+                            <li><a class="dropdown-item" href="#">Bundesliga</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar Akhir -->
+
+    <!-- Conten Awal -->
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col-sm-6 col-md-6">
+                <h3 class="text-white fw-bold">ALL League</h3>
+            </div>
+            <div class="col-sm-6 col-md-6 text-end">
+                <button type="button" class="btn btn-secondary text-decoration-none" onclick="addform()">Add</button>
+            </div>
+        </div>
+        <form class="mb-3 mt-3 text-white bg-secondary p-3 rounded-4" id="addForm">
+            <input type="hidden" id="updateId">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name Club</label>
+                <input type="text" class="form-control" id="name">
+            </div>
+            <div class="mb-3">
+                <label for="img" class="form-label">Image</label>
+                <input type="text" class="form-control" id="img">
+            </div>
+            <div class="mb-3">
+                <label for="type" class="form-label">League</label>
+                <select class="form-select" id="type"> 
+                    <option disabled selected hidden>Select League...</option>
+                </select>
+            </div>
+            <button onclick="postData(event)" type="submit" class="btn btn-primary">Submit</button>
+            <button onclick="putData(event)" type="submit" class="btn btn-danger">Update</button>
+        </form>
+        <div class="row mt-4" id="list-movie">
+        </div>
+    </div>
+
+    </div>
+
+    <!-- COnten AKhir -->
+
+
+
+
+    <!-- Script JS -->
+    <script src="coba.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+</body>
+
+</html>

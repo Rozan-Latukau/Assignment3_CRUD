@@ -1,0 +1,10 @@
+body {
+    background: #040D12;
+    font-family: sans-serif;
+}
+
+.size-img {
+    width: 100%;
+    height: 30rem;
+    object-fit: cover;
+}

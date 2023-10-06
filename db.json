@@ -1,0 +1,59 @@
+{
+  "data": [
+    {
+      "name": "Manchester City",
+      "img": "https://i.pinimg.com/564x/09/22/a4/0922a4f6f8f86900f05a99ed29fd6f86.jpg",
+      "liga": "EPL",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "num": "002",
+      "name": "Barcelona",
+      "img": "https://i.pinimg.com/564x/90/17/72/901772dce5bf628ba56032b52fad6a46.jpg",
+      "liga": "La Liga"
+    },
+    {
+      "id": 3,
+      "num": "003",
+      "name": "Inter Milan",
+      "img": "https://i.pinimg.com/564x/c3/20/0a/c3200a32dfac3283e61189d1784ad1a5.jpg",
+      "liga": "Serie A"
+    },
+    {
+      "id": 4,
+      "num": "004",
+      "name": "PSG",
+      "img": "https://i.pinimg.com/564x/9e/3a/b6/9e3ab6d8dd7f4fd6ce042920045f6dc4.jpg",
+      "liga": "Ligue 1 Uber Eats"
+    },
+    {
+      "id": 5,
+      "num": "005",
+      "name": "Bayern München",
+      "img": "https://i.pinimg.com/564x/6f/7e/c4/6f7ec49fd506081fe0160b1182e98b6e.jpg",
+      "liga": "Bundesliga"
+    },
+    {
+      "id": 6,
+      "num": "006",
+      "name": "Liverpool FC",
+      "img": "https://i.pinimg.com/564x/69/a1/61/69a16148c7a366933b7482e5a9b4910e.jpg",
+      "liga": "EPL"
+    },
+    {
+      "id": 7,
+      "num": "007",
+      "name": "Real Madrid",
+      "img": "https://i.pinimg.com/564x/fa/4f/0d/fa4f0db883d36fbfcfe76c06d9012be0.jpg",
+      "liga": "La Liga"
+    },
+    {
+      "id": 8,
+      "num": "008",
+      "name": "Ac Milan",
+      "img": "https://i.pinimg.com/564x/01/73/96/017396502eeb79de218d4fb0e614403f.jpg",
+      "liga": "Seria A"
+    }
+  ]
+}
