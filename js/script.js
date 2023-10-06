@@ -68,10 +68,9 @@ async function tampilData(id) {
                   </div>
                 `;
         movieList.appendChild(node)
-        console.log(node);
 
     } catch (error) {
-        console.log(error);
+        alert('terjadi eror', error)
     }
 
 
@@ -131,8 +130,8 @@ async function postData(e) {
 
         const response = await result.json();
         console.log("berhasil", response);
-    } catch (data) {
-        alert('ada eror', data);
+    } catch (error) {
+        alert('ada eror', error);
     }
 }
 
